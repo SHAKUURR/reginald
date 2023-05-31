@@ -36,3 +36,61 @@ menu_items.forEach((item) => {
 		}
 	});
 });
+
+//Counter
+const display = document.querySelector(".case");
+const count = document.querySelectorAll(".counter");
+let interval = 50;
+
+// Set up the Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+	// Check if the display section is in the viewport
+	if (entries[0].isIntersecting) {
+		// Start the counting
+		count.forEach((valueDisplay) => {
+			let startValue = 200;
+			let endValue = parseInt(valueDisplay.getAttribute("data-val"));
+			let duration = Math.floor(interval / endValue);
+			let counter = setInterval(function () {
+				startValue += 1;
+				valueDisplay.textContent = `${startValue}+`;
+				if (startValue == endValue) {
+					clearInterval(counter);
+				}
+			}, duration);
+		});
+
+		// Stop observing the display section
+		observer.disconnect();
+	}
+});
+
+// Start observing the display section
+observer.observe(display);
+
+//Animation on scroll........................
+ScrollReveal({ distance: "60px", duration: 2000, delay: 400 });
+ScrollReveal().reveal(".hero-text", {
+	delay: 300,
+	distance: "60px",
+	origin: "left",
+});
+
+ScrollReveal().reveal(".hero-img", {
+	delay: 300,
+	distance: "60px",
+	origin: "right",
+});
+
+ScrollReveal().reveal(".service-detail, .service-type-box", {
+	delay: 100,
+	origin: "bottom",
+	interval: 200,
+});
+
+ScrollReveal().reveal(".law-div", {
+	delay: 200,
+	origin: "bottom",
+	interval: 100,
+	rotate: { x: 1000 },
+});

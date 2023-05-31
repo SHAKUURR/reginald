@@ -249,6 +249,10 @@
     width: 100%;
   }
 
+  header {
+    padding-bottom: 3rem;
+  }
+
   .case-box {
     margin-bottom: 3rem;
   }
